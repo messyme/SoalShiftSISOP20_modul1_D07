@@ -93,7 +93,18 @@ fi
 
 
 #### (c) enkripsi sesuai waktu
-
+```
+lower='abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+upper='ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+filename=$(echo $1 | grep -oP '.*(?=\.txt)')
+hour=$(date +%-H)
+rename=$(echo $filename | tr ${lower:0:26}${upper:0:26} ${lower:$hour:26}${upper:$hour:26})
+mv $1 $rename".txt"
+```
+- ```echo $1 | grep -oP '.*(?=\.txt)'``` mengambil nama file yang merupakan argumen pertama tanpa ekstensi (.txt)
+- ```date +%-H``` menggambil perkiraan waktu setempat dan disimpan ke dalam variabel ```hour```. menggunakan %H karena (00-23)
+- ```echo $filename | tr ${lower:0:26}${upper:0:26} ${lower:$hour:26}${upper:$hour:26}``` melakukan enkripsi atau pergeseran alfabet sebanyak satu kali dan dilakukan berulang sebanyak variabel ```hour```
+- ```mv $1 $rename".txt"``` me-*rename* file tersebut
 
 
 #### (d) dekripsi agar nama file balik lagi kesemula
