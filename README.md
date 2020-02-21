@@ -3,12 +3,12 @@
 Maisie Chiara Salsabila - 05111840000057
 
 ## Daftar Isi
--[Nomor 1](#1)
--[Nomor 2](#2)
+1. [Nomor 1](#1)
+2. [Nomor 2](#2)
 	- [Nomor 2a dan 2b](2ab)
 	- [Nomor 2c](2c)
 	- [Nomor 2d](2d)
--[Nomor 3](3)
+3. [Nomor 3](3)
 
 <a name="1"></a>
 ## 1. Mengolah Data
