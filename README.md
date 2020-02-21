@@ -2,12 +2,13 @@
 
 Maisie Chiara Salsabila - 05111840000057
 
-[Nomor 1] (## 1. Mengolah Data)
-[Nomor 2] (## 2. Caesar Cipher)
-- [Nomor 2a dan 2b] (#### (a) men-*generate random password* sepanjang 28 karakter  dan (b) disimpan dalam file berekstensi .txt dan nama file hanya berupa alphabet)
-- [Nomor 2c] (#### (c) enkripsi sesuai waktu)
-- [Nomor 2d] (#### (d) dekripsi agar nama file balik lagi kesemula)
-[Nomor 3] (## 3. Kusuma)
+## Daftar Isi
+-[Nomor 1] (## 1. Mengolah Data)
+-[Nomor 2] (## 2. Caesar Cipher)
+	- [Nomor 2a dan 2b] (#### (a) men-*generate random password* sepanjang 28 karakter  dan (b) disimpan dalam file berekstensi .txt dan nama file hanya berupa alphabet)
+	- [Nomor 2c] (#### (c) enkripsi sesuai waktu)
+	- [Nomor 2d] (#### (d) dekripsi agar nama file balik lagi kesemula)
+-[Nomor 3] (## 3. Kusuma)
 
 ## 1. Mengolah Data
 ### Soal:
