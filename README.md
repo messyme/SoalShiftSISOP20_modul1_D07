@@ -108,3 +108,13 @@ mv $1 $rename".txt"
 
 
 #### (d) dekripsi agar nama file balik lagi kesemula
+```
+normal='abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+uppercase='ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+amt=$(stat -c %y $1 | grep -oP '(?<=[^ ] ).*(?=:.*:)')
+name=$(echo "${1%.txt}" | tr ${normal:$amt:26}${uppercase:$amt:26} ${normal:0:26}${uppercase:0:26})
+mv $1 $name".txt"
+```
+- ```stat -c %y $1``` mengakses waktu file saat dimodifikasi
+- ```grep -oP '(?<=[^ ] ).*(?=:.*:)'``` hanya mengambil jam(*hour*)nya
+- ```mv $1 $rename".txt"``` me-*rename* file tersebut
