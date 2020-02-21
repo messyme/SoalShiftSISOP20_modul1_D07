@@ -39,6 +39,7 @@ echo " "
 - ```sort -g``` untuk mengurutkan sesuai dengan bilangan pecahan (-g)
 - ```head -2``` untuk mengambil 2 baris teratas saja
 
+
 #### c)Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling sedikit berdasarkan 2 negara bagian (state) hasil poin b
 ```echo "SEPULUH Nama Produk dengan profit paling sedikit berdasarkan poin b : "
 c=$(awk -F"\t" 'NR > 1 {
@@ -61,3 +62,38 @@ echo "$c"
 - ```/home/maisie/Downloads/Sample-Superstore.tsv``` merupakan lokasi file serta nama file yang datanya diolah pada program ini
 - ```sort -g``` untuk mengurutkan sesuai dengan bilangan pecahan (-g)
 - ```head -10``` untuk mengambil 10 baris teratas saja
+
+
+
+## 2. Caesar Cipher
+### Soal: 
+Pada suatu siang, laptop Randolf dan Afairuzr dibajak oleh seseorang dan kehilangan data-data penting. Untuk mencegah kejadian yang sama terulang kembali mereka meminta bantuan kepada Whits karena dia adalah seorang yang punya banyak ide. Whits memikirkan sebuah ide namun dia meminta bantuan kalian kembali agar ide tersebut cepat diselesaikan. Idenya adalah kalian 
+(a) membuat sebuah script bash yang dapat menghasilkan password secara acak sebanyak 28 karakter yang terdapat huruf besar, huruf kecil, dan angka. 
+(b) Password acak tersebut disimpan pada file berekstensi .txt dengan nama berdasarkan argumen yang diinputkan dan HANYA berupa alphabet. 
+(c) Kemudian supaya file .txt tersebut tidak mudah diketahui maka nama filenya akan di enkripsi dengan menggunakan konversi huruf (string manipulation) yang disesuaikan
+dengan jam(0-23) dibuatnya file tersebut dengan program terpisah dengan (misal: password.txt dibuat pada jam 01.28 maka namanya berubah menjadi qbttxpse.txt dengan perintah ‘bash soal2_enkripsi.sh password.txt’. Karena p adalah huruf ke 16 dan file dibuat pada jam 1 maka 16+1=17 dan huruf ke 17 adalah q dan begitu pula seterusnya. Apabila melebihi z, akan kembali ke a, contoh: huruf w dengan jam 5.28, maka akan menjadi huruf b.) dan 
+(d) jangan lupa untuk membuat dekripsinya supaya nama file bisa kembali.
+
+#### (a) men-*generate random password* sepanjang 28 karakter  dan (b) disimpan dalam file berekstensi .txt dan nama file hanya berupa alphabet
+```if [[ $1 =~ ^[a-zA-Z]+$ ]]
+then
+	cat /dev/urandom| tr -dc 'a-zA-Z0-9' | fold -w 28 | head -n 1 > `echo $1 | tr -dc 'a-zA-Z'`.txt
+else
+	echo "error"
+fi
+```
+- ```if [[ $1 =~ ^[a-zA-Z]+$ ]]``` adalah kondisi agar nama file dengan ekstensi .txt hanya terdiri dari alphabet, jika sesuai kondisi maka akan muncul output ```echo "error"```
+- ```cat``` adalah command linux dari *concatenate* dimana command ini berfungsi untuk melihat isi file, membuat isi file, dan menggabungkan beberapa teks file menjadi satu teks file.
+- ```/dev/urandom``` adalah berfungsi untuk merandom karakter secara *pseurandom*
+- ```tr -dc 'a-zA-Z0-9'``` adalah karakter-karakter yang akan diacak
+- ```fold -w``` adalah untuk memberi limit karakter yang akan dihasilkan, misalnya: 28 karakter saja
+- ```head -n 1``` maksudnya adalah membuat satu baris string
+- ```echo $1 | tr -dc 'a-zA-Z'``` adalah argumen pertama yang akan dijadikan nama file dengan ekstensi .txt
+- ```> `echo $1 | tr -dc 'a-zA-Z'`.txt``` melakukan *redirection* (menyimpan outpun ke file)
+
+
+#### (c) enkripsi sesuai waktu
+
+
+
+#### (d) dekripsi agar nama file balik lagi kesemula
