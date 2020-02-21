@@ -32,7 +32,7 @@ b=$(awk -F"\t" 'NR>1 { DataState[$11] += $21 }
 echo "$b"
 echo " "
 ```
-- NR adalah *number of fields in current record*. Jadi NR>1 berfungsi agar *number of fields* terhitung dari setelah baris pertama, atau dengan kata lain mengabaikan baris pertama.
+- ```NR``` adalah *number of fields in current record*. Jadi NR>1 berfungsi agar *number of fields* terhitung dari setelah baris pertama, atau dengan kata lain mengabaikan baris pertama.
 - ```{DataState[$11] += $21}``` Baris ```DataState``` pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-11.
 - ```for (i in DataState) { print DataState[i] " " i } }``` merupakan looping untuk mencetak semua index dan isi dari array
 - ```/home/maisie/Downloads/Sample-Superstore.tsv``` merupakan lokasi file serta nama file yang datanya diolah pada program ini
@@ -53,7 +53,7 @@ c=$(awk -F"\t" 'NR > 1 {
 					}' /home/maisie/Downloads/Sample-Superstore.tsv | sort -g | head -10)
 echo "$c"
 ```
-- NR adalah *number of fields in current record*. Jadi NR>1 berfungsi agar *number of fields* terhitung dari setelah baris pertama, atau dengan kata lain mengabaikan baris pertama.
+- ```NR``` adalah *number of fields in current record*. Jadi NR>1 berfungsi agar *number of fields* terhitung dari setelah baris pertama, atau dengan kata lain mengabaikan baris pertama.
 - ```if ($13 == "Central")``` Setiap baris pada kolom ke-13 dicek, jika baris merupakan ```"Central"```.
 - ```if ($11 == "Texas" || $11 == "Illunois")``` Setiap baris pada kolom ke-11 dicek, jika baris merupakan ```"Texas"``` OR ```"Illunois"```.
 - ```{DataProduk[$17] += $21}``` Baris ```DataProduk``` pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-17.
