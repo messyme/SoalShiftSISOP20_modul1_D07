@@ -1,5 +1,7 @@
 # SoalShiftSISOP20_modul1_D07
 
+Maisie Chiara Salsabila - 05111840000057
+
 ## 1. Mengolah Data
 ### Soal:
 Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum untuk membuat laporan berdasarkan data yang ada pada file “Sample-Superstore.tsv”.
