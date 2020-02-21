@@ -1,6 +1,6 @@
 # SoalShiftSISOP20_modul1_D07
 
-Maisie Chiara Salsabila - 05111840000057 <\n>
+Maisie Chiara Salsabila - 05111840000057
 David Bintang - 05111840000090
 
 ## Daftar Isi
