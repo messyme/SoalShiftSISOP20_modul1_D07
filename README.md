@@ -15,7 +15,8 @@ Maisie Chiara Salsabila - 05111840000057
 ### Soal:
 Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum untuk membuat laporan berdasarkan data yang ada pada file “Sample-Superstore.tsv”.
 #### a) Tentukan wilayah bagian (region) mana yang memiliki keuntungan (profit) paling sedikit
-```echo "Region yang memiliki profit paling SEDIKIT : "
+```
+echo "Region yang memiliki profit paling SEDIKIT : "
 a=$(awk -F"\t" '{ if ($13 != "Region")
 			 {DataRegion[$13] += $21} }
 	END { 
@@ -34,7 +35,8 @@ echo " "
 
 
 #### b) Tampilkan 2 negara bagian (state) yang memiliki keuntungan (profit) paling sedikit berdasarkan hasil poin a
-```echo "DUA State dengan profit paling sedikit : "
+```
+echo "DUA State dengan profit paling sedikit : "
 b=$(awk -F"\t" 'NR>1 { DataState[$11] += $21 } 
 			END { 
 				for (i in DataState) 
@@ -52,7 +54,8 @@ echo " "
 
 
 #### c)Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling sedikit berdasarkan 2 negara bagian (state) hasil poin b
-```echo "SEPULUH Nama Produk dengan profit paling sedikit berdasarkan poin b : "
+```
+echo "SEPULUH Nama Produk dengan profit paling sedikit berdasarkan poin b : "
 c=$(awk -F"\t" 'NR > 1 {
 			if ($13 == "Central") {
 				if ($11 == "Texas" || $11 == "Illinois") 
@@ -88,7 +91,8 @@ dengan jam(0-23) dibuatnya file tersebut dengan program terpisah dengan (misal: 
 
 <a name="2ab"></a>
 #### (a) men-*generate random password* sepanjang 28 karakter  dan (b) disimpan dalam file berekstensi .txt dan nama file hanya berupa alphabet
-```if [[ $1 =~ ^[a-zA-Z]+$ ]]
+```
+if [[ $1 =~ ^[a-zA-Z]+$ ]]
 then
 	cat /dev/urandom| tr -dc 'a-zA-Z0-9' | fold -w 28 | head -n 1 > `echo $1 | tr -dc 'a-zA-Z'`.txt
 else
@@ -142,7 +146,8 @@ mv $1 $name".txt"
 1 tahun telah berlalu sejak pencampakan hati Kusuma. Akankah sang pujaan hati kembali ke naungan Kusuma? Memang tiada maaf bagi Elen. Tapi apa daya hati yang sudah hancur, Kusuma masih terguncang akan sikap Elen. Melihat kesedihan Kusuma, kalian mencoba menghibur Kusuma dengan mengirimkan gambar kucing. [b] setiap 8 jam dimulai dari jam 6.05 setiap hari kecuali hari Sabtu Karena gambar yang didownload dari link tersebut bersifat random, maka ada kemungkinan gambar yang terdownload itu identik. Supaya gambar yang identik tidak dikira Kusuma sebagai spam, maka diperlukan sebuah script untuk memindahkan salah satu gambar identik. Setelah memilah gambar yang identik, maka dihasilkan gambar yang berbeda antara satu dengan yang lain. Gambar yang berbeda tersebut, akan kalian kirim ke Kusuma supaya hatinya kembali ceria. Setelah semua gambar telah dikirim, kalian akan selalu menghibur Kusuma, jadi gambar yang telah terkirim tadi akan kalian simpan kedalam folder /kenangan dan kalian bisa mendownload gambar baru lagi. [c] Maka dari itu buatlah sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar yang terdownload tadi. Bila terindikasi sebagai gambar yang identik, maka sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253). Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak". Hint : Gunakan wget.log untuk membuat location.log yang isinya merupakan hasil dari grep "Location".
 
 #### (a) Maka dari itu, kalian mencoba membuat script untuk mendownload 28 gambar dari "https://loremflickr.com/320/240/cat" menggunakan command wget dan menyimpan file dengan nama "pdkt_kusuma_NO" (contoh: pdkt_kusuma_1, pdkt_kusuma_2, pdkt_kusuma_3) serta jangan lupa untuk menyimpan log messages wget kedalam sebuah file "wget.log". Karena kalian gak suka ribet, kalian membuat penjadwalan untuk menjalankan script download gambar tersebut. Namun, script download tersebut hanya berjalan
-```for((i=1;i<29;i++))
+```
+for((i=1;i<29;i++))
 do
 wget -O pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
 done
