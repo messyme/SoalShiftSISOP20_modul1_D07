@@ -4,7 +4,7 @@
 ### Soal:
 Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum untuk membuat laporan berdasarkan data yang ada pada file “Sample-Superstore.tsv”.
 #### a) Tentukan wilayah bagian (region) mana yang memiliki keuntungan (profit) paling sedikit
-echo "Region yang memiliki profit paling SEDIKIT : "
+```echo "Region yang memiliki profit paling SEDIKIT : "
 a=$(awk -F"\t" '{ if ($13 != "Region")
 			 {DataRegion[$13] += $21} }
 	END { 
@@ -13,7 +13,7 @@ a=$(awk -F"\t" '{ if ($13 != "Region")
 	}' /home/maisie/Downloads/Sample-Superstore.tsv | sort -g | head -1)
 echo "$a"
 echo " "
-
+```
 - if ($13 != "Region") Setiap baris dicek, jika baris bukan merupakan "Region" atau baris pertama maka baris tersebut adalah baris DataRegion. 
 - {DataRegion[$13] += $21} Baris DataRegion pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-13.
 - for (i in DataRegion) {	print DataRegion[i] " " i } } merupakan looping untuk mencetak semua index dan isi dari array
