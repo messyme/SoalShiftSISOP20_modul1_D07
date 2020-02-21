@@ -14,12 +14,12 @@ a=$(awk -F"\t" '{ if ($13 != "Region")
 echo "$a"
 echo " "
 ```
-- if ($13 != "Region") Setiap baris dicek, jika baris bukan merupakan "Region" atau baris pertama maka baris tersebut adalah baris DataRegion. 
-- {DataRegion[$13] += $21} Baris DataRegion pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-13.
-- for (i in DataRegion) {	print DataRegion[i] " " i } } merupakan looping untuk mencetak semua index dan isi dari array
-- /home/maisie/Downloads/Sample-Superstore.tsv merupakan lokasi file serta nama file yang datanya diolah pada program ini
-- sort -g untuk mengurutkan sesuai dengan bilangan pecahan (-g)
-- head -1 untuk mengambil baris teratas saja
+- if ```($13 != "Region")``` Setiap baris dicek, jika baris bukan merupakan ```"Region"``` atau baris pertama maka baris tersebut adalah baris DataRegion. 
+- ```{DataRegion[$13] += $21}``` Baris ```DataRegion``` pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-13.
+- ```for (i in DataRegion) { print DataRegion[i] " " i } }``` merupakan looping untuk mencetak semua index dan isi dari array
+- ```/home/maisie/Downloads/Sample-Superstore.tsv``` merupakan lokasi file serta nama file yang datanya diolah pada program ini
+- ```sort -g``` untuk mengurutkan sesuai dengan bilangan pecahan (-g)
+- ```head -1``` untuk mengambil baris teratas saja
 
 
 #### b) Tampilkan 2 negara bagian (state) yang memiliki keuntungan (profit) paling sedikit berdasarkan hasil poin a
