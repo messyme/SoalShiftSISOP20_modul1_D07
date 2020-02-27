@@ -128,8 +128,10 @@ rename=$(echo $filename | tr ${lower:0:26}${upper:0:26} ${lower:$hour:26}${upper
 mv $1 $rename".txt"
 ```
 - ```echo $1 | grep -oP '.*(?=\.txt)'``` mengambil nama file yang merupakan argumen pertama tanpa ekstensi (.txt)
+- ```grep``` berfungsi sebagai pencari pada suatu text
+- ```.``` berarti semua karakter, ```*``` berarti dari 0 sampai n, ```.*``` berarti mengambil semua karakter dari 0 sampai n.
 - ```date +%-H``` menggambil perkiraan waktu setempat dan disimpan ke dalam variabel ```hour```. menggunakan %H karena (00-23)
-- - ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
+- ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
 - ```echo $filename | tr ${lower:0:26}${upper:0:26} ${lower:$hour:26}${upper:$hour:26}``` melakukan enkripsi atau pergeseran alfabet sebanyak satu kali dan dilakukan berulang sebanyak variabel ```hour```
 - ```mv $1 $rename".txt"``` me-*rename* file tersebut
 
@@ -137,14 +139,18 @@ mv $1 $rename".txt"
 <a name="2d"></a>
 #### (d) dekripsi agar nama file balik lagi kesemula
 ```
-normal='abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
-uppercase='ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
-amt=$(stat -c %y $1 | grep -oP '(?<=[^ ] ).*(?=:.*:)')
-name=$(echo "${1%.txt}" | tr ${normal:$amt:26}${uppercase:$amt:26} ${normal:0:26}${uppercase:0:26})
+lower='abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+upper='ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+hour=$(stat -c %y $1 | grep -oP '(?<=[^ ] ).*(?=:.*:)')
+name=$(echo "${1%.txt}" | tr ${lower:$hour:26}${upper:$hour:26} ${lower:0:26}${upper:0:26})
 mv $1 $name".txt"
 ```
 - ```stat -c %y $1``` mengakses waktu file saat dimodifikasi
+- ```grep``` berfungsi sebagai pencari pada suatu text
+- ```[^ ]``` *matches* semua karakter kecuali spasi
+- ```.``` berarti semua karakter, ```*``` berarti dari 0 sampai n, ```.*``` berarti mengambil semua karakter dari 0 sampai n.  
 - ```grep -oP '(?<=[^ ] ).*(?=:.*:)'``` hanya mengambil jam(*hour*)nya
+- ```tr ${lower:$hour:26}${upper:$hour:26} ${lower:0:26}${upper:0:26}``` pergeseran alfabet sebanyak satu kali dan dilakukan berulang sebanyak variabel ```hour```
 - ```mv $1 $rename".txt"``` me-*rename* file tersebut
 
 
