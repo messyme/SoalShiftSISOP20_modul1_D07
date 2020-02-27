@@ -27,6 +27,7 @@ a=$(awk -F"\t" '{ if ($13 != "Region")
 echo "$a"
 echo " "
 ```
+- ```-F "\t"``` pembatas yang digunakan antar kolom adalah tab
 - ```if ($13 != "Region")``` Setiap baris dicek, jika baris bukan merupakan ```"Region"``` atau baris pertama maka baris tersebut adalah baris DataRegion. 
 - ```{DataRegion[$13] += $21}``` Baris ```DataRegion``` pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-13.
 - ```for (i in DataRegion) { print DataRegion[i] " " i } }``` merupakan looping untuk mencetak semua index dan isi dari array
@@ -46,6 +47,7 @@ b=$(awk -F"\t" 'NR>1 { DataState[$11] += $21 }
 echo "$b"
 echo " "
 ```
+- ```-F "\t"``` pembatas yang digunakan antar kolom adalah tab
 - ```NR``` adalah *number of fields in current record*. Jadi NR>1 berfungsi agar *number of fields* terhitung dari setelah baris pertama, atau dengan kata lain mengabaikan baris pertama.
 - ```{DataState[$11] += $21}``` Baris ```DataState``` pada field ke-21 yang merupakan profit ditambahkan ke dalam array asosiatif yakni field ke-11.
 - ```for (i in DataState) { print DataState[i] " " i } }``` merupakan looping untuk mencetak semua index dan isi dari array
@@ -69,6 +71,7 @@ c=$(awk -F"\t" 'NR > 1 {
 					}' /home/maisie/Downloads/Sample-Superstore.tsv | sort -g | head -10)
 echo "$c"
 ```
+- ```-F "\t"``` pembatas yang digunakan antar kolom adalah tab
 - ```NR``` adalah *number of fields in current record*. Jadi NR>1 berfungsi agar *number of fields* terhitung dari setelah baris pertama, atau dengan kata lain mengabaikan baris pertama.
 - ```if ($13 == "Central")``` Setiap baris pada kolom ke-13 dicek, jika baris merupakan ```"Central"```.
 - ```if ($11 == "Texas" || $11 == "Illunois")``` Setiap baris pada kolom ke-11 dicek, jika baris merupakan ```"Texas"``` OR ```"Illunois"```.
@@ -101,8 +104,12 @@ else
 fi
 ```
 - ```if [[ $1 =~ ^[a-zA-Z]+$ ]]``` adalah kondisi agar nama file dengan ekstensi .txt hanya terdiri dari alphabet, jika sesuai kondisi maka akan muncul output ```echo "error"```
+- ```=~```
+- ```^``` regex untuk sebagai *beginning of string*
+- ```+$``` regex untuk sebagai penutup string
 - ```cat``` adalah command linux dari *concatenate* dimana command ini berfungsi untuk melihat isi file, membuat isi file, dan menggabungkan beberapa teks file menjadi satu teks file.
 - ```/dev/urandom``` adalah berfungsi untuk merandom karakter secara *pseurandom*
+- ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
 - ```tr -dc 'a-zA-Z0-9'``` adalah karakter-karakter yang akan diacak
 - ```fold -w``` adalah untuk memberi limit karakter yang akan dihasilkan, misalnya: 28 karakter saja
 - ```head -n 1``` maksudnya adalah membuat satu baris string
@@ -122,6 +129,7 @@ mv $1 $rename".txt"
 ```
 - ```echo $1 | grep -oP '.*(?=\.txt)'``` mengambil nama file yang merupakan argumen pertama tanpa ekstensi (.txt)
 - ```date +%-H``` menggambil perkiraan waktu setempat dan disimpan ke dalam variabel ```hour```. menggunakan %H karena (00-23)
+- - ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
 - ```echo $filename | tr ${lower:0:26}${upper:0:26} ${lower:$hour:26}${upper:$hour:26}``` melakukan enkripsi atau pergeseran alfabet sebanyak satu kali dan dilakukan berulang sebanyak variabel ```hour```
 - ```mv $1 $rename".txt"``` me-*rename* file tersebut
 
@@ -154,5 +162,6 @@ wget -a pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.
 done
 ```
 - ```wget``` command untuk melakukan download
+- ```-a``` agar lognya tersimpan tanpa ter-*replace*
 - ```-a pdkt_kusuma_$i``` memberi nama pada file yang didownload, menggunakan ```-a``` agar log tersimpan tanpa ter-*replace*
 - ```--append-output wget.log >> wget.log``` menyimpan log message wget ke file wget.log
