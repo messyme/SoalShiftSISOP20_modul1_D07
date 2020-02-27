@@ -110,6 +110,7 @@ fi
 - ```cat``` adalah command linux dari *concatenate* dimana command ini berfungsi untuk melihat isi file, membuat isi file, dan menggabungkan beberapa teks file menjadi satu teks file.
 - ```/dev/urandom``` adalah berfungsi untuk merandom karakter secara *pseurandom*
 - ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
+- ```-dc``` adalah gabungan dari ```-d``` untuk delete, ```-c``` untuk complement
 - ```tr -dc 'a-zA-Z0-9'``` adalah karakter-karakter yang akan diacak
 - ```fold -w``` adalah untuk memberi limit karakter yang akan dihasilkan, misalnya: 28 karakter saja
 - ```head -n 1``` maksudnya adalah membuat satu baris string
@@ -130,6 +131,7 @@ mv $1 $rename".txt"
 - ```echo $1 | grep -oP '.*(?=\.txt)'``` mengambil nama file yang merupakan argumen pertama tanpa ekstensi (.txt)
 - ```grep``` berfungsi sebagai pencari pada suatu text
 - ```.``` berarti semua karakter, ```*``` berarti dari 0 sampai n, ```.*``` berarti mengambil semua karakter dari 0 sampai n.
+- ```?=``` adalah *positive look ahead* berfungsi untuk membaca kedepan
 - ```date +%-H``` menggambil perkiraan waktu setempat dan disimpan ke dalam variabel ```hour```. menggunakan %H karena (00-23)
 - ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
 - ```echo $filename | tr ${lower:0:26}${upper:0:26} ${lower:$hour:26}${upper:$hour:26}``` melakukan enkripsi atau pergeseran alfabet sebanyak satu kali dan dilakukan berulang sebanyak variabel ```hour```
@@ -147,8 +149,10 @@ mv $1 $name".txt"
 ```
 - ```stat -c %y $1``` mengakses waktu file saat dimodifikasi
 - ```grep``` berfungsi sebagai pencari pada suatu text
+- ```?<=``` adalah *positive look behind* berfungsi untuk membaca kebelakang
 - ```[^ ]``` *matches* semua karakter kecuali spasi
 - ```.``` berarti semua karakter, ```*``` berarti dari 0 sampai n, ```.*``` berarti mengambil semua karakter dari 0 sampai n.  
+- ```?=``` adalah *positive look ahead* berfungsi untuk membaca kedepan
 - ```grep -oP '(?<=[^ ] ).*(?=:.*:)'``` hanya mengambil jam(*hour*)nya
 - ```tr ${lower:$hour:26}${upper:$hour:26} ${lower:0:26}${upper:0:26}``` pergeseran alfabet sebanyak satu kali dan dilakukan berulang sebanyak variabel ```hour```
 - ```mv $1 $rename".txt"``` me-*rename* file tersebut
