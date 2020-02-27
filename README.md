@@ -150,9 +150,9 @@ mv $1 $name".txt"
 ```
 for((i=1;i<29;i++))
 do
-wget -O pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
+wget -a pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
 done
 ```
 - ```wget``` command untuk melakukan download
-- ```-O pdkt_kusuma_$i``` memberi nama pada file yang didownload
+- ```-a pdkt_kusuma_$i``` memberi nama pada file yang didownload, menggunakan ```-a``` agar log tersimpan tanpa ter-*replace*
 - ```--append-output wget.log >> wget.log``` menyimpan log message wget ke file wget.log
