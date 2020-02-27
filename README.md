@@ -6,10 +6,10 @@ David Bintang - 05111840000090
 ## Daftar Isi
 1. [Nomor 1](#1)
 2. [Nomor 2](#2)
-	- [Nomor 2a dan 2b](2ab)
-	- [Nomor 2c](2c)
-	- [Nomor 2d](2d)
-3. [Nomor 3](3)
+	- [Nomor 2a dan 2b](#2ab)
+	- [Nomor 2c](#2c)
+	- [Nomor 2d](#2d)
+3. [Nomor 3](#3)
 
 <a name="1"></a>
 ## 1. Mengolah Data
@@ -148,6 +148,8 @@ name=$(echo "${1%.txt}" | tr ${lower:$hour:26}${upper:$hour:26} ${lower:0:26}${u
 mv $1 $name".txt"
 ```
 - ```stat -c %y $1``` mengakses waktu file saat dimodifikasi
+- ```stat``` menampilkan atau mengakses informasi detail
+- ```%y``` waktu terakhir modifikasi atau *time last modified*
 - ```grep``` berfungsi sebagai pencari pada suatu text
 - ```?<=``` adalah *positive look behind* berfungsi untuk membaca kebelakang
 - ```[^ ]``` *matches* semua karakter kecuali spasi
