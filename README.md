@@ -149,6 +149,7 @@ mv $1 $name".txt"
 ```
 - ```stat -c %y $1``` mengakses waktu file saat dimodifikasi
 - ```stat``` menampilkan atau mengakses informasi detail
+- ```-c``` menggunakan format spesifik tertentu bukan format *default*
 - ```%y``` waktu terakhir modifikasi atau *time last modified*
 - ```grep``` berfungsi sebagai pencari pada suatu text
 - ```?<=``` adalah *positive look behind* berfungsi untuk membaca kebelakang
