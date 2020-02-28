@@ -116,7 +116,7 @@ fi
 - ```fold -w``` adalah untuk memberi limit karakter yang akan dihasilkan, misalnya: 28 karakter saja
 - ```head -n 1``` maksudnya adalah membuat satu baris string
 - ```echo $1 | tr -dc 'a-zA-Z'``` adalah argumen pertama yang akan dijadikan nama file dengan ekstensi .txt
-- ```> `echo $1 | tr -dc 'a-zA-Z'`.txt``` melakukan *redirection* (menyimpan outpun ke file)
+- ```> `echo $1 | tr -dc 'a-zA-Z'`.txt``` melakukan *redirection* (menyimpan output ke file dalam artian menginput hasil *generate* ke dalam file ekstensi .txt)
 
 
 <a name="2c"></a>
