@@ -165,16 +165,66 @@ mv $1 $name".txt"
 <a name="3"></a>
 ## 3. Kusuma
 ### Soal:
-1 tahun telah berlalu sejak pencampakan hati Kusuma. Akankah sang pujaan hati kembali ke naungan Kusuma? Memang tiada maaf bagi Elen. Tapi apa daya hati yang sudah hancur, Kusuma masih terguncang akan sikap Elen. Melihat kesedihan Kusuma, kalian mencoba menghibur Kusuma dengan mengirimkan gambar kucing. [b] setiap 8 jam dimulai dari jam 6.05 setiap hari kecuali hari Sabtu Karena gambar yang didownload dari link tersebut bersifat random, maka ada kemungkinan gambar yang terdownload itu identik. Supaya gambar yang identik tidak dikira Kusuma sebagai spam, maka diperlukan sebuah script untuk memindahkan salah satu gambar identik. Setelah memilah gambar yang identik, maka dihasilkan gambar yang berbeda antara satu dengan yang lain. Gambar yang berbeda tersebut, akan kalian kirim ke Kusuma supaya hatinya kembali ceria. Setelah semua gambar telah dikirim, kalian akan selalu menghibur Kusuma, jadi gambar yang telah terkirim tadi akan kalian simpan kedalam folder /kenangan dan kalian bisa mendownload gambar baru lagi. [c] Maka dari itu buatlah sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar yang terdownload tadi. Bila terindikasi sebagai gambar yang identik, maka sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253). Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak". Hint : Gunakan wget.log untuk membuat location.log yang isinya merupakan hasil dari grep "Location".
+1 tahun telah berlalu sejak pencampakan hati Kusuma. Akankah sang pujaan hati kembali ke naungan Kusuma? Memang tiada maaf bagi Elen. Tapi apa daya hati yang sudah hancur, Kusuma masih terguncang akan sikap Elen. Melihat kesedihan Kusuma, kalian mencoba menghibur Kusuma dengan mengirimkan gambar kucing.
 
 #### (a) Maka dari itu, kalian mencoba membuat script untuk mendownload 28 gambar dari "https://loremflickr.com/320/240/cat" menggunakan command wget dan menyimpan file dengan nama "pdkt_kusuma_NO" (contoh: pdkt_kusuma_1, pdkt_kusuma_2, pdkt_kusuma_3) serta jangan lupa untuk menyimpan log messages wget kedalam sebuah file "wget.log". Karena kalian gak suka ribet, kalian membuat penjadwalan untuk menjalankan script download gambar tersebut. Namun, script download tersebut hanya berjalan
+
 ```
-for((i=1;i<29;i++))
+#!/bin/bash
+for xxx in {1..28}
 do
-wget -a pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
+	wget "https://loremflickr.com/320/240/cat" -O "/home/davtang/pdkt_kusuma_$xxx" -a "/home/davtang/wget.log"
 done
 ```
+- ```for xxx in {1..28}``` command untuk melakukan pengulangan sebanyak 28 kali (28 gambar)
 - ```wget``` command untuk melakukan download
+- ```wget "https://loremflickr.com/320/240/cat" ``` wget untuk mendownload dari web tersebut
+- ```-O "/home/davtang/pdkt_kusuma_$xxx"``` destinasi lokasi download serta memberi nama pada file yang didownload dengan format yang diberi.
+- ```-a "/home/davtang/wget.log"``` akan ada output di terminal saat proses selesai (log message), maka output tersebut di pindah ke file bernama wget.log 
 - ```-a``` agar lognya tersimpan tanpa ter-*replace*
-- ```-a pdkt_kusuma_$i``` memberi nama pada file yang didownload, menggunakan ```-a``` agar log tersimpan tanpa ter-*replace*
-- ```--append-output wget.log >> wget.log``` menyimpan log message wget ke file wget.log
+
+#### (b ) Script download tersebut hanya berjalan setiap 8 jam dimulai dari jam 6.05 setiap hari kecuali hari Sabtu
+```
+crontab -e
+```
+```
+5 6-23/8 * * 1-5,7 bash /home/davtang/soal3a.sh
+```
+- ```crontab -e``` membuka window crontab sebagai pengaturan awal pada terminal.
+- ```5 6-23/8 * * 1-5,7``` pada crontab, bintang pertama berisi angka 5 yang berarti setiap menit ke 5, 6-23/8 artinya dari jam 6 sampai 11 malam, setiap 8 jam, 1-5,7 artinya setiap hari kecuali hari sabtu (hari ke 6).
+- ``` bash /home/davtang/soal3ash``` menjalankan file yang ingin diberi crontab / penjadwalan.
+
+#### (c ) sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar. Bila terindikasi sebagai gambar yang identik, maka  sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate       dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor". Setelah tidak ada gambar dicurrent directory  , maka lakukan backup seluruh log menjadi    ekstensi ".log.bak"
+```
+#!/bin/bash
+
+grep "Location" wget.log > location.log
+
+for xxx in {1..28}
+do
+for zzz in {1..28}
+do
+if [ $xxx -eq $zzz ]
+	then
+	continue
+elif cmp -s "pdkt_kusuma_$xxx" "pdkt_kusuma_$zzz"
+	then
+	mv pdkt_kusuma_$xxx ./duplicate/duplicate_$xxx
+	fi
+done
+done
+
+for xxx in {1..28}
+do
+	mv pdkt_kusuma_$xxx ./kenangan/kenangan_$xxx
+done
+cp wget.log wget.log.bak
+```
+- ```grep "Location" wget.log > location.log``` grep berfungsi untuk mencari data line, disini yang dicari adalah "Location" dari wget.log , dan dipindah ke location.log dengan overwrite jika sudah ada.
+- ```for xxx in {1..28} do``` looping pengulangan 1 gambar
+- ```for zzz in {1..28} do``` karena ada 2 gambar yang akan di cek, maka dijadikan double loop.
+- ```if [ $xxx -eq $zzz ] then continue``` Di cek, jika angka pada variabel xxx dan zzz sama, maka pengecekan akan dilanjutkan, karena jika sama, berarti kedua gambar tersebut adalah gambar yang sama persis.
+- ```elif cmp -s "pdkt_kusuma_$xxx" "pdkt_kusuma_$zzz" then mv pdkt_kusuma_$xxx ./duplicate/duplicate_$xxx``` selain itu, compare (bandingkan) gambar 1 dan lainnya, jika terbukti sama gambarnya, maka yang sama tersebut akan dipindah ke folder duplicate dengan format nama yang tertera.
+- ```for xxx in {1..28} do``` melakukan looping untuk command berikutnya
+- ```mv pdkt_kusuma_$xxx ./kenangan/kenangan_$xxx``` memindahkan gambar-gambar yang sudah tersaring tadi ke folder kenangan dengan format nama yang tertera.
+- ```cp wget.log wget.log.bak``` meng copy isi dari wget.log ke wget.log.bak sebagai back up data.
