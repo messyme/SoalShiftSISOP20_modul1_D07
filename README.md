@@ -104,9 +104,10 @@ else
 fi
 ```
 - ```if [[ $1 =~ ^[a-zA-Z]+$ ]]``` adalah kondisi agar nama file dengan ekstensi .txt hanya terdiri dari alphabet, jika sesuai kondisi maka akan muncul output ```echo "error"```
-- ```=~```
+- ```=~``` regex berarti menyerupai
 - ```^``` regex untuk sebagai *beginning of string*
-- ```+$``` regex untuk sebagai penutup string
+- ```+``` regex untuk berulang dari 1 (satu) sampai n
+- ```$``` regex untuk sebagai penutup string
 - ```cat``` adalah command linux dari *concatenate* dimana command ini berfungsi untuk melihat isi file, membuat isi file, dan menggabungkan beberapa teks file menjadi satu teks file.
 - ```/dev/urandom``` adalah berfungsi untuk merandom karakter secara *pseurandom*
 - ```tr``` adalah dari kata *translate* atau *transliterate*, berfungsing untuk menerjemah, menyalin, atau menghapus suatu karakter
